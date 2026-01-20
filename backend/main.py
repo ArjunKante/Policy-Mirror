@@ -1,5 +1,11 @@
+from dotenv import load_dotenv
+load_dotenv()
+import os
+print("OPENAI KEY FOUND:", bool(os.getenv("OPENAI_API_KEY")))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 
 from backend.models import AnalyzeRequest, AnalyzeResponse
 from backend.services.rule_engine import budget_impact
