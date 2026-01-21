@@ -10,7 +10,8 @@ function App() {
   const [error, setError] = useState(null);
 
   // ✅ API base URL from environment (Vercel / local)
-  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
 
   async function analyzePolicy() {
     setLoading(true);
