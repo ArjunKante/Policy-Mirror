@@ -9,16 +9,19 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // ✅ API base URL from environment (Vercel / local)
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
   async function analyzePolicy() {
     setLoading(true);
     setError(null);
     setResult(null);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/analyze", {
+      const response = await fetch(`${API_BASE}/analyze`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           policy: "union_budget_2024",
@@ -26,9 +29,9 @@ function App() {
             age: Number(age),
             income: Number(income),
             state,
-            status
-          }
-        })
+            status,
+          },
+        }),
       });
 
       if (!response.ok) {
@@ -53,25 +56,29 @@ function App() {
         placeholder="Age"
         value={age}
         onChange={(e) => setAge(e.target.value)}
-      /><br /><br />
+      />
+      <br /><br />
 
       <input
         placeholder="Annual Income (₹)"
         value={income}
         onChange={(e) => setIncome(e.target.value)}
-      /><br /><br />
+      />
+      <br /><br />
 
       <input
         placeholder="State"
         value={state}
         onChange={(e) => setState(e.target.value)}
-      /><br /><br />
+      />
+      <br /><br />
 
       <input
         placeholder="Status (student / working / senior)"
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-      /><br /><br />
+      />
+      <br /><br />
 
       <button onClick={analyzePolicy}>
         Analyze Policy
@@ -86,8 +93,4 @@ function App() {
           <pre>{JSON.stringify(result, null, 2)}</pre>
         </div>
       )}
-    </div>
-  );
-}
-
-export default App;
+    </d
