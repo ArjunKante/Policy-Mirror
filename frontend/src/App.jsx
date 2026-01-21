@@ -9,9 +9,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // ✅ API base URL from environment (Vercel / local)
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-
+  const API_BASE =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
   async function analyzePolicy() {
     setLoading(true);
@@ -58,32 +57,34 @@ function App() {
         value={age}
         onChange={(e) => setAge(e.target.value)}
       />
-      <br /><br />
+      <br />
+      <br />
 
       <input
         placeholder="Annual Income (₹)"
         value={income}
         onChange={(e) => setIncome(e.target.value)}
       />
-      <br /><br />
+      <br />
+      <br />
 
       <input
         placeholder="State"
         value={state}
         onChange={(e) => setState(e.target.value)}
       />
-      <br /><br />
+      <br />
+      <br />
 
       <input
         placeholder="Status (student / working / senior)"
         value={status}
         onChange={(e) => setStatus(e.target.value)}
       />
-      <br /><br />
+      <br />
+      <br />
 
-      <button onClick={analyzePolicy}>
-        Analyze Policy
-      </button>
+      <button onClick={analyzePolicy}>Analyze Policy</button>
 
       {loading && <p>Analyzing policy...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -94,4 +95,8 @@ function App() {
           <pre>{JSON.stringify(result, null, 2)}</pre>
         </div>
       )}
-    </d
+    </div>
+  );
+}
+
+export default App;
