@@ -1,13 +1,13 @@
 from dotenv import load_dotenv
 load_dotenv()
 import os
-print("OPENAI KEY FOUND:", bool(os.getenv("OPENAI_API_KEY")))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 
 from backend.models import AnalyzeRequest, AnalyzeResponse
+
 from backend.services.rule_engine import budget_impact
 from backend.services.policy_ai import summarize_policy
 
@@ -17,10 +17,11 @@ app = FastAPI(title="PolicyMirror API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/")
 def root():
